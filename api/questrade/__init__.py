@@ -41,6 +41,12 @@ class QTClient:
         request_url = '%sv1/markets/quotes?ids=%s&stream=true&mode=WebSocket' % (self.api_uri, ",".join(symbol_ids))
         r = requests.get(request_url, headers=self.__build_auth_header())
         return r.json()['streamPort']
+
+    def search(self, symbol):
+        #https://api01.iq.questrade.com/v1/symbols/search?prefix=BMO
+        request_url = '%sv1/symbols/search?prefix=%s' % (self.api_uri, symbol)
+        r = requests.get(request_url, headers=self.__build_auth_header())
+        return r.json()['symbols']
     
     def get_candles(self, symbol_id, start_time, end_time, interval):
         request_url = '%sv1/markets/candles/%s?startTime=%s&endTime=%s&interval=%s' % (self.api_uri, 
