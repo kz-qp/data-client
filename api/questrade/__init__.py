@@ -52,7 +52,7 @@ class QTClient:
         request_url = '%sv1/markets/candles/%s?startTime=%s&endTime=%s&interval=%s' % (self.api_uri, 
             symbol_id, start_time, end_time, interval)
         r = requests.get(request_url, headers=self.__build_auth_header())
-        return r.json()['candles']
+        return r.json()
 
     async def consume(self, message):
         print(message)
